@@ -24,13 +24,18 @@ const RocketsTable = (props) => {
                 textAlign={"left"}
               >
                 Name: {item.name}
-                <br/>
+              </Typography>
+               <Typography
+                variant="body2"
+                color="text.secondary"
+                textAlign={"left"}
+              >
                 First Flight: {item.first_flight}
-                <br/>
+                <br />
                 Country: {item.country}
-                <br/>
+                <br />
                 Details: {item.description}
-                <br/>
+                <br />
                 <Link to={item.wikipedia}>Learn More</Link>
               </Typography>
             </CardContent>
@@ -42,4 +47,3 @@ const RocketsTable = (props) => {
 };
 
 export default RocketsTable;
-

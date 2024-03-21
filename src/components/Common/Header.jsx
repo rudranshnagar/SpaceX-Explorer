@@ -6,8 +6,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
-// import Slide from "@mui/material/Slide";
-// import useScrollTrigger from "@mui/material/useScrollTrigger";
+import Slide from "@mui/material/Slide";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Logo from "../../assets/SpaceX-Logo.svg";
 
 const Search = styled("div")(({ theme }) => ({
@@ -60,23 +60,23 @@ const pages = [
   { label: "Launch Pads", link: "/launchpads/page/1" },
 ];
 
-// function HideOnScroll(props) {
-//   const { children, window } = props;
+function HideOnScroll(props) {
+  const { children, window } = props;
 
-//   const trigger = useScrollTrigger({
-//     target: window ? window() : undefined,
-//   });
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
 
-//   return (
-//     <Slide appear={false} direction="down" in={!trigger}>
-//       {children}
-//     </Slide>
-//   );
-// }
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
 
 const Header = () => {
   return (
-
+    <HideOnScroll>
       <AppBar sx={{ backgroundColor: "black" }}>
         <Toolbar>
           <Typography
@@ -116,8 +116,7 @@ const Header = () => {
           </Search>
         </Toolbar>
       </AppBar>
-      
-
+    </HideOnScroll>
   );
 };
 

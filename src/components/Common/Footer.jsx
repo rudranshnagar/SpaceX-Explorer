@@ -5,7 +5,7 @@ import CopyrightOutlinedIcon from "@mui/icons-material/CopyrightOutlined";
 import LanguageIcon from "@mui/icons-material/Language";
 import CameraIcon from "@mui/icons-material/Camera";
 import XIcon from "@mui/icons-material/X";
-import PlaceIcon from '@mui/icons-material/Place';
+import PlaceIcon from "@mui/icons-material/Place";
 
 const Company = () => {
   const [companyData, setCompanyData] = useState([]);
@@ -55,31 +55,29 @@ const Company = () => {
           </div>
         </div>
         <div className="footer-center">
-            <div className="footer-website-icon">
-              <a href={companyData.links.website}>
-                <LanguageIcon />
-                Official Website
-              </a>
-            </div>
-            <div className="footer-flickr-icon">
-              <a href={companyData.links.flickr}>
-                <CameraIcon />
-                Flickr
-              </a> 
-            </div>
-            <div className="footer-twitter-icon">
-              <a href={companyData.links.twitter}>
-                <XIcon />
-                X
-              </a>
-            </div>
-            <div className="footer-ceo-twitter-icon">
-              <a href={companyData.links.twitter}>
-                <XIcon />
-                Elon Musk
-              </a>
-            </div>
-          
+          <div className="footer-website-icon">
+            <a href={companyData.links.website}>
+              <LanguageIcon />
+              Official Website
+            </a>
+          </div>
+          <div className="footer-flickr-icon">
+            <a href={companyData.links.flickr}>
+              <CameraIcon />
+              Flickr
+            </a>
+          </div>
+          <div className="footer-twitter-icon">
+            <a href={companyData.links.twitter}>
+              <XIcon />X
+            </a>
+          </div>
+          <div className="footer-ceo-twitter-icon">
+            <a href={companyData.links.twitter}>
+              <XIcon />
+              Elon Musk
+            </a>
+          </div>
         </div>
         <div className="footer-right">
           <Typography
@@ -89,11 +87,11 @@ const Company = () => {
             gutterBottom
           >
             <div className="footer-place-icon">
-            <PlaceIcon/>
+              <PlaceIcon />
             </div>
-          {companyData.headquarters.address} ,{companyData.headquarters.city} ,{companyData.headquarters.state}
+            {companyData.headquarters.address} ,{companyData.headquarters.city}{" "}
+            ,{companyData.headquarters.state}
           </Typography>
-            
         </div>
       </div>
     );

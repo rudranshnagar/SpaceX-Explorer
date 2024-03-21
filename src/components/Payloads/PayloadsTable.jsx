@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent, Typography } from "@mui/material";
+import { Grid, Card, CardContent, Typography, Button } from "@mui/material";
 
 const PayloadsTable = (props) => {
   return (
@@ -52,6 +52,10 @@ const PayloadsTable = (props) => {
                   Customer Name: {customer}
                 </Typography>
               ))}
+              <br />
+              <div>
+              <Button variant="outlined" href={"/payloads/" + item.id}>Show More</Button>
+              </div>
             </CardContent>
           </Card>
         </Grid>

@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
 
 const CoresTable = (props) => {
   return (
@@ -44,7 +44,8 @@ const CoresTable = (props) => {
               </Typography>
               
 
-
+              <br />
+              <Button variant="outlined" href={"/cores/" + item.id}>Show More</Button>
 
             </CardContent>
           </Card>

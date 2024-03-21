@@ -93,6 +93,7 @@ overflow-y: auto;
 
 .footer-center {
   flex: 1;
+  flex-direction: column;
   text-align: 'center';
   color: black;
 border: solid black 2px;
@@ -118,4 +119,20 @@ border: solid black 2px;
 
 .footer-summary {
   justify-content: left;
+}
+
+.footer-website-icon > a,
+.footer-flickr-icon > a ,
+.footer-twitter-icon > a ,
+.footer-ceo-twitter-icon > a {
+  color: black;
+}
+
+.footer-website-icon,
+.footer-flickr-icon ,
+.footer-twitter-icon ,
+.footer-ceo-twitter-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
