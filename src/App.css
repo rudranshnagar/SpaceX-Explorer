@@ -1,0 +1,69 @@
+#root {
+  max-width: 100%;
+  text-align: center;
+  background-color: black;
+}
+
+.launchlist-grid-container {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around ;
+  align-items: flex-end;
+}
+
+.launches-main-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  min-width: 1920px;
+}
+
+.grid-youtube{
+  display: flex;
+  min-width: 920;
+  align-items: center;
+  background-color: blue;
+}
+
+.expand-more-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 197vh;
+  z-index: 1;
+}
+
+.page-button {
+  background: transparent !important;
+  border: 1px solid white !important;
+}
+
+.pagination-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.prev-button {
+  margin-right: 25px !important;
+  width: 100px
+}
+
+.next-button {
+  width: 100px;
+}
+
+.app {
+  padding-top: 64px;
+}
+
+.launch-table-wrapper {
+height: calc(100vh - 122.5px);
+overflow-y: auto;
+}
+
+.hide-button{
+  visibility: hidden;
+}
