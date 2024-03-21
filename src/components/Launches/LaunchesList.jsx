@@ -26,6 +26,7 @@ const LaunchesList = () => {
           requestBody
         );
         setLaunchData(launch.data);
+        
         setLoading(false);
       } catch (error) {
         console.log(error);

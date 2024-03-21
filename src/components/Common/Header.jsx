@@ -6,8 +6,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
-import Slide from "@mui/material/Slide";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
+// import Slide from "@mui/material/Slide";
+// import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Logo from "../../assets/SpaceX-Logo.svg";
 
 const Search = styled("div")(({ theme }) => ({
@@ -57,7 +57,7 @@ const pages = [
   { label: "Cores", link: "/cores/page/1" },
   { label: "Rockets", link: "/rockets/page/1" },
   { label: "Ships", link: "/ships/page/1" },
-  { label: "Launch Pads", link: "/launch-pads" },
+  { label: "Launch Pads", link: "/launchpads/page/1" },
 ];
 
 // function HideOnScroll(props) {
