@@ -1,10 +1,11 @@
-import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
 
 const LaunchTable = (props) => {
   return (
     <Grid container className="launchlist-grid-container" spacing={5}>
       {props.launchData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={4}>
+          {console.log(item)}
           <Card sx={{ height: 750, width: 500, margin: "0px 25px 25px 25px" }}>
             <CardMedia
               component="img"
@@ -49,8 +50,11 @@ const LaunchTable = (props) => {
                 textAlign={"left"}
               >
                 Rocket Name: {item.rocket.name}
+                <br />
                 Launchpad Name: {item.launchpad.name}
               </Typography>
+              <br />
+              <Button variant="outlined" href={"/launches/" + item.id}>Show More</Button>
             </CardContent>
           </Card>
         </Grid>

@@ -6,8 +6,8 @@ const YoutubeEmbed = ({ id }) => {
   }
 
   const playerVars = {
-    height: "400",
-    width: "600",
+    height: "800",
+    width: "95%",
     autoplay: 1,
     enablejsapi: 1,
     webShare: 0,
