@@ -16,6 +16,7 @@ import Ships from "./components/Ships/Ships";
 import LaunchpadsList from "./components/Launchpads/LaunchpadsList";
 import Launchpads from "./components/Launchpads/Launchpads";
 import History from "./components/History";
+import Searchres from "./components/Common/searchres"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <div className="app-content">
         <Routes>
           <Route path="/" element={<History />} />
+          <Route path="/searchresults/:searchTerm" element={<Searchres />} />
           <Route path="/launches/page/:page" element={<LaunchesList />} />
           <Route path="/launches/:id" element={<Launches />} />
           <Route path="/payloads/page/:page" element={<PayloadsList />} />

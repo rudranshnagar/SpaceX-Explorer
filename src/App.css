@@ -16,11 +16,14 @@
 
 .container-launch{
   padding: 30px;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   text-align: left;
 }
 
+.searchres{
+  width: 100vw;
+}
 
 .heading-i{
   display: flex;

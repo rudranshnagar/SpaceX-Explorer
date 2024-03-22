@@ -9,6 +9,8 @@ import { styled, alpha } from "@mui/material/styles";
 import Slide from "@mui/material/Slide";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Logo from "../../assets/SpaceX-Logo.svg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -75,6 +77,12 @@ function HideOnScroll(props) {
 }
 
 const Header = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+  const handleSearch = (event) => {
+    event.preventDefault();
+    navigate(`/searchresults/${searchTerm}`);
+  };
   return (
     <HideOnScroll>
       <AppBar sx={{ backgroundColor: "black" }}>
@@ -105,15 +113,19 @@ const Header = () => {
             </Button>
           ))}
 
-          <Search sx={{ flexGrow: 1 }}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search Rockets, Payloads or Cores"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <form onSubmit={handleSearch}>
+                <Search sx={{ flexGrow: 1 }}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search Rockets, Payloads or Cores"
+                    inputProps={{ "aria-label": "search" }}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    value={searchTerm}
+                  />
+                </Search>
+              </form>
         </Toolbar>
       </AppBar>
     </HideOnScroll>
