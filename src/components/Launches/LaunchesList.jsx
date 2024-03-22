@@ -4,6 +4,7 @@ import axios from "axios";
 import LaunchTable from "./LaunchTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
+import DataCard from "../Common/DataCard.jsx";
 
 const LaunchesList = () => {
   const { page } = useParams();
@@ -35,7 +36,7 @@ const LaunchesList = () => {
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > 21) {
+  if (page <= 0 || page > launchData.totalPages ) {
     return <NoPage />;
   }
 

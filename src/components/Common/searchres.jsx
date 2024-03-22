@@ -10,40 +10,38 @@ const Searchres = () => {
   const { searchTerm } = useParams();
   const [searchData, setSearchData] = useState({});
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const requestBody = {
-          query: {
-            $text: {
-              $search: searchTerm.trim(),
-            },
+ 
+  async function fetchData() {
+    try {
+      const requestBody = {
+        query: {
+          $text: {
+            $search: searchTerm?.trim() || " ",
           },
-        };
-        const rockets = await axios.post(
-          `https://api.spacexdata.com/v4/rockets/query`,
-          requestBody
-        );
-        const payloads = await axios.post(
-          `https://api.spacexdata.com/v4/payloads/query`,
-          requestBody
-        );
-        const cores = await axios.post(
-          `https://api.spacexdata.com/v4/cores/query`,
-          requestBody
-        );
+        },
+      };
+      const rockets = await axios.post(
+        `https://api.spacexdata.com/v4/rockets/query`,
+        requestBody
+      );
+      const payloads = await axios.post(
+        `https://api.spacexdata.com/v4/payloads/query`,
+        requestBody
+      );
+      const cores = await axios.post(
+        `https://api.spacexdata.com/v4/cores/query`,
+        requestBody
+      );
 
-        searchData.rockets = rockets.data.docs;
-        searchData.payloads = payloads.data.docs;
-        searchData.cores = cores.data.docs;
+      setSearchData({rockets: rockets.data.docs , payloads: payloads.data.docs, cores: cores.data.docs});
+      setLoading(false);
 
-        setSearchData(searchData);
-
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
+    } catch (error) {
+      console.log(error);
     }
+  }
+ 
+  useEffect(() => {
     fetchData();
   }, [searchTerm]);
 

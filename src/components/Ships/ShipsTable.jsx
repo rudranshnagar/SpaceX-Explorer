@@ -1,22 +1,14 @@
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import DataCard from "../Common/DataCard";
 
 const ShipsTable = (props) => {
   return (
     <Grid container className="shipslist-grid-container" spacing={5}>
       {props.shipsData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={4}>
-          <Card sx={{ height: 750, width: 500, margin: "0px 25px 25px 60px" }}>
-            <CardMedia
-              component="img"
-              height="500"
-              image={item.image}
-              alt="Ship Image"
-              sx={{
-                backgroundColor: "grey",
-              }}
-            />
-            <CardContent sx={{ maxHeight: 200, overflow: "auto" }}>
+        <DataCard imageLink={item.image} buttonLink={"ships"} id={item.id}>
+          
               <Typography
                 gutterBottom
                 variant="h5"
@@ -27,7 +19,7 @@ const ShipsTable = (props) => {
               </Typography>
               <Typography
                 variant="body2"
-                color="text.secondary"
+                
                 textAlign={"left"}
               >
                 Port: {item.home_port}
@@ -40,7 +32,7 @@ const ShipsTable = (props) => {
                 <Typography
                   key={launch.id}
                   variant="body2"
-                  color="text.secondary"
+                  
                   textAlign={"left"}
                 >
                   Launch Name: {launch.name}
@@ -48,15 +40,13 @@ const ShipsTable = (props) => {
               ))}
               <Typography
                 variant="body2"
-                color="text.secondary"
+                
                 textAlign={"left"}
               >
               <Link to={item.link}>Learn More</Link>
               </Typography>
-              <br />
-              <Button variant="outlined" href={"/ships/" + item.id}>Show More</Button>
-            </CardContent>
-          </Card>
+              
+          </DataCard>
         </Grid>
       ))}
     </Grid>

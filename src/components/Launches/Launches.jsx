@@ -2,8 +2,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Grid } from "@mui/material";
-import YoutubeEmbed from "../YoutubeEmbed";
+import YoutubeEmbed from "../Common/YoutubeEmbed";
 import PayloadsTable from "../Payloads/PayloadsTable";
+import NoPage from "../Common/NoPage";
+import { CleaningServices } from "@mui/icons-material";
 
 const Launches = () => {
   const { id } = useParams();
@@ -18,9 +20,21 @@ const Launches = () => {
             _id: `${id}`,
           },
           options: {
-            populate: ["payloads", "rocket", "launchpad", "cores"],
+            populate: [
+              "payloads",
+              "rocket",
+              "launchpad",
+              {
+                path: "cores",
+                populate: {
+                  path: "core",
+                },
+              },
+              "ships",
+            ],
           },
         };
+
         const launch = await axios.post(
           `https://api.spacexdata.com/v4/launches/query`,
           requestBody
@@ -34,6 +48,7 @@ const Launches = () => {
         setLaunchData(launch.data.docs[0]);
         setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -48,29 +63,83 @@ const Launches = () => {
     );
   } else {
     return (
-      <div className="container-launch">
-        <YoutubeEmbed id={launchData.links.youtube_id} />
-        <h2>{launchData.date_utc}</h2>
-        <h1>{launchData.name} Mission</h1>
-        <h3>{launchData.details || "Details to Be Updated"}</h3>
-        <a href={launchData.links.article}>Link to Article</a>
-        <p>{launchData.rocket.name}</p>
-        <div className="img-g">
-          <img
-            src={launchData.rocket.flickr_images[0]}
-            width={"600vw"}
-            height={"400vh"}
-          />
-          <img
-            src={launchData.launchpad.images.large[0]}
-            width={"600vw"}
-            height={"400vh"}
-          />
-        </div>
-        <h3>Launch Pad: {launchData.launchpad.full_name}</h3>
-        <h3>Details: {launchData.launchpad.details}</h3>
-        <h3>Region: {launchData.launchpad.region}</h3>
-        <p>Flight Number: {launchData.flight_number}</p>
+      <div>
+        {launchData.length === 0 ? (
+          <NoPage />
+        ) : (
+          <div className="container-launch">
+            <YoutubeEmbed id={launchData.links.youtube_id} />
+            <h2>{launchData.date_utc}</h2>
+            <h1>{launchData.name} Mission</h1>
+            <h3>{launchData.details || "Details to Be Updated"}</h3>
+            {launchData.links.article && (
+              <a href={launchData.links.article}>Link to Article</a>
+            )}
+            <br />
+            {launchData.links.wikipedia.length > 0 ? (
+              <a href={launchData.links.wikipedia}>Link to wikipedia</a>
+            ) : (
+              ""
+            )}
+            <div className="img-g">
+              <img
+                src={launchData.rocket.flickr_images[0]}
+                width={"600vw"}
+                height={"400vh"}
+              />
+              <img
+                src={launchData.launchpad.images.large[0]}
+                width={"600vw"}
+                height={"400vh"}
+              />
+            </div>
+            <h3>Launch Pad: {launchData.launchpad.full_name}</h3>
+            <h3>Details: {launchData.launchpad.details}</h3>
+            <h3>Region: {launchData.launchpad.region}</h3>
+            <p>Flight Number: {launchData.flight_number}</p>
+            {launchData.rocket && (
+              <a href={`/rockets/${launchData.rocket.id}`}>
+                Check out {launchData.rocket.name}
+              </a>
+            )}
+            {launchData.payloads.length > 0 ? <h3>Payloads: </h3> : ""}
+            <ol>
+              {launchData.payloads.length > 0
+                ? launchData.payloads.map((item) => (
+                    <li key={item.id}>
+                      <a href={`/payloads/${item.id}`}>Check out {item.name}</a>
+                    </li>
+                  ))
+                : ""}
+            </ol>
+            {launchData.launchpad && (
+              <a href={`/launchpads/${launchData.launchpad.id}`}>
+                Check out {launchData.launchpad.name}
+              </a>
+            )}
+            {launchData.ships.length > 0 ? <h3>Related Ships: </h3> : ""}
+            <ol>
+              {launchData.ships &&
+                launchData.ships.map((item) => (
+                  <li key={item.id}>
+                    <a href={`/ships/${item.id}`}>Check out {item.name}</a>
+                  </li>
+                ))}
+            </ol>
+            {launchData.cores && <h3>Cores carried: </h3>}
+            <ol>
+              {launchData.cores &&
+                launchData.cores.map((item) => (
+                  <li key={item.id}>
+                    <a href={`/cores/${item.core.id}`}>
+                      Check out {item.core.serial}
+                    </a>
+                  </li>
+                ))}
+            </ol>
+            
+          </div>
+        )}
       </div>
     );
   }

@@ -77,11 +77,12 @@ function HideOnScroll(props) {
 }
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const handleSearch = (event) => {
     event.preventDefault();
     navigate(`/searchresults/${searchTerm}`);
+    
   };
   return (
     <HideOnScroll>
@@ -97,7 +98,7 @@ const Header = () => {
             <img
               src={Logo}
               className="App-logo"
-              alt="SpaceX-Logo"
+              alt="SpaceX"
               style={{ width: "250px", height: "50px" }}
             />
           </Typography>
@@ -113,19 +114,22 @@ const Header = () => {
             </Button>
           ))}
 
-          <form onSubmit={handleSearch} style={{ display: 'flex', width: '50%' }}>
-                <Search sx={{ flexGrow: 1 }}>
-                  <SearchIconWrapper>
-                    <SearchIcon />
-                  </SearchIconWrapper>
-                  <StyledInputBase
-                    placeholder="Search Rockets, Payloads or Cores"
-                    inputProps={{ "aria-label": "search" }}
-                    onChange={(event) => setSearchTerm(event.target.value)}
-                    value={searchTerm}
-                  />
-                </Search>
-              </form>
+          <form
+            onSubmit={handleSearch}
+            style={{ display: "flex", width: "50%" }}
+          >
+            <Search sx={{ flexGrow: 1 }}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search Rockets, Payloads or Cores"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                value={searchTerm}
+              />
+            </Search>
+          </form>
         </Toolbar>
       </AppBar>
     </HideOnScroll>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import NoPage from "../Common/NoPage";
 import { Container, Grid, Typography } from "@mui/material";
-import YoutubeEmbed from "../YoutubeEmbed";
+import YoutubeEmbed from "../Common/YoutubeEmbed";
 import PayloadsTable from "../Payloads/PayloadsTable";
 
 const Launchpads = () => {

@@ -1,22 +1,14 @@
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import DataCard from "../Common/DataCard";
 
 const RocketsTable = (props) => {
   return (
     <Grid container className="rocketslist-grid-container" spacing={5}>
       {props.rocketsData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={5}>
-          <Card sx={{ height: 750, width: 500, margin: "0px 25px 25px 280px" }}>
-            <CardMedia
-              component="img"
-              height="500"
-              image={item.flickr_images[0]}
-              alt="Rocket Image"
-              sx={{
-                backgroundColor: "grey",
-              }}
-            />
-            <CardContent sx={{ maxHeight: 200, overflow: "auto" }}>
+
+        <DataCard imageLink={item.flickr_images[0]} buttonLink={"rockets"} id={item.id}>
               <Typography
                 gutterBottom
                 variant="h5"
@@ -27,7 +19,6 @@ const RocketsTable = (props) => {
               </Typography>
                <Typography
                 variant="body2"
-                color="text.secondary"
                 textAlign={"left"}
               >
                 First Flight: {item.first_flight}
@@ -38,10 +29,7 @@ const RocketsTable = (props) => {
                 <br />
                 <Link to={item.wikipedia}>Wikipedia</Link>
               </Typography>
-              <br />
-              <Button variant="outlined" href={"/rockets/" + item.id}>Show More</Button>
-            </CardContent>
-          </Card>
+             </DataCard>
         </Grid>
       ))}
     </Grid>

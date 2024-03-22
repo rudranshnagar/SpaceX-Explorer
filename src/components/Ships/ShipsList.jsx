@@ -34,7 +34,7 @@ const ShipsList = () => {
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > 3) {
+  if (page <= 0 || page > shipsData.totalPages) {
     return <NoPage />;
   }
 

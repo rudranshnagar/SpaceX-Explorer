@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NoPage from "../Common/NoPage";
-import YoutubeEmbed from "../YoutubeEmbed";
+import YoutubeEmbed from "../Common/YoutubeEmbed";
 import { CleanHands } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 

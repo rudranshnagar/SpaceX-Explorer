@@ -1,13 +1,14 @@
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
+import DataCard from "../Common/DataCard";
 
 const CoresTable = (props) => {
   return (
     <Grid container className="coreslist-grid-container" spacing={5}>
       {props.coresData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={4}>
-          <Card sx={{ height: 300, width: 450, margin: "0px 25px 25px 25px" }}>
-            
-            <CardContent sx={{ maxHeight: 200, overflow: "auto" }}>
+          
+        <DataCard buttonLink={"cores"} id={item.id}>
+          
               <Typography
                 gutterBottom
                 variant="h5"
@@ -21,34 +22,26 @@ const CoresTable = (props) => {
                 <Typography
                   key={launch.id}
                   variant="body2"
-                  color="text.secondary"
+  
                   textAlign={"left"}
                 >
                   Launch Name: {launch.name}
                 </Typography>
               ))}
 
-
-
-
               <Typography
                 variant="body2"
-                color="text.secondary"
+
                 textAlign={"left"}
               >
                 Status: {item.status}
                 <br/>
                 Last Update: {(item.last_update === null || item.last_update.trim().length === 0) ? "Not available" : item.last_update}
               
-              
               </Typography>
-              
 
-              <br />
-              <Button variant="outlined" href={"/cores/" + item.id}>Show More</Button>
-
-            </CardContent>
-          </Card>
+             </DataCard>
+            
         </Grid>
       ))}
     </Grid>

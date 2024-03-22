@@ -1,20 +1,12 @@
-import { Grid, Card, CardContent, Typography, Button } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import DataCard from "../Common/DataCard";
 
 const PayloadsTable = (props) => {
   return (
     <Grid container className="payloadslist-grid-container" spacing={5}>
       {props.payloadsData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={4}>
-          <Card sx={{ height: 300, width: 450, margin: "0px 25px 25px 25px" }}>
-            <CardContent
-              sx={{
-                overflow: "auto",
-                height: 750,
-                width: 500,
-                margin: "0px 25px 25px 25px",
-                backgroundColor: "",
-              }}
-            >
+        <DataCard  buttonLink={"payloads"} id={item.id}>
               <Typography
                 gutterBottom
                 variant="h5"
@@ -25,7 +17,7 @@ const PayloadsTable = (props) => {
               </Typography>
               <Typography
                 variant="body2"
-                color="text.secondary"
+      
                 textAlign={"left"}
               >
                 Type: {item.type} <br />
@@ -46,18 +38,13 @@ const PayloadsTable = (props) => {
                 <Typography
                   key={index}
                   variant="body2"
-                  color="text.secondary"
+        
                   textAlign={"left"}
                 >
                   Customer Name: {customer}
                 </Typography>
               ))}
-              <br />
-              <div>
-              <Button variant="outlined" href={"/payloads/" + item.id}>Show More</Button>
-              </div>
-            </CardContent>
-          </Card>
+              </DataCard>
         </Grid>
       ))}
     </Grid>

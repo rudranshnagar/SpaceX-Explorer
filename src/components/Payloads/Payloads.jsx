@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import YoutubeEmbed from "../YoutubeEmbed";
+import YoutubeEmbed from "../Common/YoutubeEmbed";
 import { CleanHands } from "@mui/icons-material";
 import { Typography } from "@mui/material";
 import NoPage from "../Common/NoPage";
@@ -30,7 +30,7 @@ const Payloads = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        console.log(payloadsData.length);
+        
         console.log(error);
       }
     }

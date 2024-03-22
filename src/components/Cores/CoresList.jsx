@@ -34,7 +34,7 @@ const CoresList = () => {
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > 9) {
+  if (page <= 0 || page > coresData.totalPages) {
     return <NoPage />;
   }
 

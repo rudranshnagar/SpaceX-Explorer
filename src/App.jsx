@@ -26,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<History />} />
           <Route path="/searchresults/:searchTerm" element={<Searchres />} />
+          <Route path="/searchresults/" element={<Searchres />} />
           <Route path="/launches/page/:page" element={<LaunchesList />} />
           <Route path="/launches/:id" element={<Launches />} />
           <Route path="/payloads/page/:page" element={<PayloadsList />} />

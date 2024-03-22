@@ -1,24 +1,14 @@
-import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import DataCard from "../Common/DataCard";
 
 const LaunchTable = (props) => {
   return (
     <Grid container className="launchlist-grid-container" spacing={5}>
       {props.launchData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={4}>
+
+          <DataCard imageLink={item.links.patch.large} buttonLink={"launches"} id={item.id}>
           
-          <Card sx={{ height: 750, width: 500, margin: "0px 25px 25px 25px" }}>
-            <CardMedia
-              component="img"
-              height="500"
-              image={item.links.patch.large}
-              alt="Launch Image"
-              sx={{
-                backgroundColor: "grey",
-                paddingTop: "1rem",
-                paddingBottom: "1rem",
-              }}
-            />
-            <CardContent sx={{ maxHeight: 200, overflow: "auto" }}>
               <Typography
                 gutterBottom
                 variant="h5"
@@ -29,7 +19,7 @@ const LaunchTable = (props) => {
               </Typography>
               <Typography
                 variant="body2"
-                color="text.secondary"
+                
                 textAlign={"left"}
               >
                 Flight Number: {item.flight_number}
@@ -38,7 +28,7 @@ const LaunchTable = (props) => {
                 <Typography
                   key={payload.id}
                   variant="body2"
-                  color="text.secondary"
+                
                   textAlign={"left"}
                 >
                   Payload Name: {payload.name}
@@ -46,17 +36,14 @@ const LaunchTable = (props) => {
               ))}
               <Typography
                 variant="body2"
-                color="text.secondary"
+                
                 textAlign={"left"}
               >
                 Rocket Name: {item.rocket.name}
                 <br />
                 Launchpad Name: {item.launchpad.name}
               </Typography>
-              <br />
-              <Button variant="outlined" href={"/launches/" + item.id}>Show More</Button>
-            </CardContent>
-          </Card>
+              </DataCard>
         </Grid>
       ))}
     </Grid>

@@ -6,6 +6,9 @@ import styled from "styled-components";
 const History = () => {
   const [historyData, setHistoryData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const altLink =
+"https://upload.wikimedia.org/wikipedia/commons/5/5a/No_image_available_500_x_500.svg"
+
   const imageUrls = {
     1: "https://www.reuters.com/resizer/v2/https%3A%2F%2Fcloudfront-us-east-2.images.arcpublishing.com%2Freuters%2FEHTWJ3A3AFLNXFUWRTIKESHJ64.jpg?auth=1cd57f7fb2f3603d9f2ce748ad99e352b44714c8af1783b093fea341e59d030c&width=1080&quality=80",
     2: "https://techcrunch.com/wp-content/uploads/2021/04/spacex-crew-2-launch.gif?w=1390&crop=1",
@@ -83,7 +86,7 @@ const History = () => {
         {historyData.map((item, index) => (
           <FullPageBackground
             key={index}
-            style={{ backgroundImage: `url(${imageUrls[index + 1]})` }}
+            style={{  backgroundImage: `url(${imageUrls[index + 1] || altLink})`,}}
           >
             <ContentWrapper>
               <h1>{item.title}</h1>

@@ -42,7 +42,7 @@ const LaunchesList = () => {
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > 23) {
+  if (page <= 0 || page > payloadsData.totalPages) {
     return <NoPage />;
   }
 
