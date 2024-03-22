@@ -1,4 +1,11 @@
-import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from "@mui/material";
 
 const LaunchpadsTable = (props) => {
   return (
@@ -47,17 +54,23 @@ const LaunchpadsTable = (props) => {
                   Rocket Name: {rocket.name}
                 </Typography>
               ))}
-
-              {item.launches.map((launch, index) => (
-                <Typography
-                  key={launch.id}
-                  variant="body2"
-                  color="text.secondary"
-                  textAlign="left"
-                >
-                  {index + 1}. Launch Name: {launch.name}
-                </Typography>
-              ))}
+              <ol>
+                {item.launches.map((launch, index) => (
+                  <Typography
+                    key={launch.id}
+                    variant="body2"
+                    color="text.secondary"
+                    textAlign="left"
+                  >
+                    <li key={index}> Launch Name: {launch.name}</li>
+                  </Typography>
+                ))}
+                <div>
+                  <Button variant="outlined" href={"/launchpads/" + item.id}>
+                    Show More
+                  </Button>
+                </div>
+              </ol>
             </CardContent>
           </Card>
         </Grid>
