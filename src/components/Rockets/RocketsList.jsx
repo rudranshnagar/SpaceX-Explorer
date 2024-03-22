@@ -33,7 +33,7 @@ const RocketsList = () => {
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > 1) {
+  if (page <= 0 || page > rocketsData.totalPages) {
     return <NoPage />;
   }
 
@@ -46,7 +46,7 @@ const RocketsList = () => {
   } else {
     return (
       <div>
-        {console.log(rocketsData.totalPages)}
+        
         <Pagination url={url} lastPage={rocketsData.totalPages} />
         <div className="rockets-table-wrapper">
           <RocketsTable rocketsData={rocketsData.docs} />

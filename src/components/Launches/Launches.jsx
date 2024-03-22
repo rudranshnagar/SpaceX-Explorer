@@ -47,7 +47,7 @@ const Launches = () => {
   } else {
     return (
       <div className="container-launch">
-        {console.log(launchData)}
+        
         <YoutubeEmbed id={launchData.links.youtube_id} />
         <h2>{launchData.date_utc}</h2>
         <h1>{launchData.name} Mission</h1>

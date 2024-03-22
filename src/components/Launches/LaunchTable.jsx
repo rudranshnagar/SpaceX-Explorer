@@ -5,7 +5,7 @@ const LaunchTable = (props) => {
     <Grid container className="launchlist-grid-container" spacing={5}>
       {props.launchData.map((item) => (
         <Grid item key={item.id} xs={12} md={6} lg={4}>
-          {console.log(item)}
+          
           <Card sx={{ height: 750, width: 500, margin: "0px 25px 25px 25px" }}>
             <CardMedia
               component="img"

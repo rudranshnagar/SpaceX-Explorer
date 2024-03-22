@@ -4,6 +4,7 @@ import axios from "axios";
 import YoutubeEmbed from "../YoutubeEmbed";
 import { CleanHands } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import NoPage from "../Common/NoPage";
 
 const Payloads = () => {
   const { id } = useParams();
@@ -28,6 +29,8 @@ const Payloads = () => {
         setPayloadsData(payloads.data.docs[0]);
         setLoading(false);
       } catch (error) {
+        setLoading(false);
+        console.log(payloadsData.length);
         console.log(error);
       }
     }
@@ -42,19 +45,25 @@ const Payloads = () => {
     );
   } else {
     return (
-      <div className="container-launch">
-        <YoutubeEmbed id={payloadsData.launch.links.youtube_id} />
-        <h4>{payloadsData.type}</h4>
-        <h1>{payloadsData.name}</h1>
-        <ul>
-            <li key={payloadsData.launch.id}>
-            Launch Name: {payloadsData.launch.name}
-            <br/>
-            <a href={payloadsData.launch.links.wikipedia}>
-            Launch Wiki Page
-            </a>
-            </li>
-        </ul>
+      <div>
+        {payloadsData.length === 0 ? (
+          <NoPage />
+        ) : (
+          <div className="container-launch">
+            <YoutubeEmbed id={payloadsData.launch.links.youtube_id} />
+            <h4>{payloadsData.type}</h4>
+            <h1>{payloadsData.name}</h1>
+            <ul>
+              <li key={payloadsData.launch.id}>
+                Launch Name: {payloadsData.launch.name}
+                <br />
+                <a href={payloadsData.launch.links.wikipedia}>
+                  Launch Wiki Page
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
@@ -90,4 +99,3 @@ export default Payloads;
         <PayloadsTable payloadsData={launchData.payloads} />
         <p>Flight Number: {launchData.flight_number}</p> */
 }
-
