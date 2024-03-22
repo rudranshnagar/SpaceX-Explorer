@@ -1,4 +1,4 @@
-import { Grid, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Grid, Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const RocketsTable = (props) => {
@@ -36,8 +36,10 @@ const RocketsTable = (props) => {
                 <br />
                 Details: {item.description}
                 <br />
-                <Link to={item.wikipedia}>Learn More</Link>
+                <Link to={item.wikipedia}>Wikipedia</Link>
               </Typography>
+              <br />
+              <Button variant="outlined" href={"/rockets/" + item.id}>Show More</Button>
             </CardContent>
           </Card>
         </Grid>

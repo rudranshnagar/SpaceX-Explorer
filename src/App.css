@@ -16,10 +16,11 @@
 
 .container-launch{
   padding: 30px;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   text-align: left;
 }
+
 
 .heading-i{
   display: flex;

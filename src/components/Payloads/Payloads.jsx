@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 
 const Payloads = () => {
   const { id } = useParams();
-  const [coresData, setCoresData] = useState([]);
+  const [payloadsData, setPayloadsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,14 +18,14 @@ const Payloads = () => {
             _id: `${id}`,
           },
           options: {
-            populate: [""],
+            populate: ["launch"],
           },
         };
-        const cores = await axios.post(
+        const payloads = await axios.post(
           `https://api.spacexdata.com/v4/payloads/query`,
           requestBody
         );
-        setCoresData(cores.data.docs[0]);
+        setPayloadsData(payloads.data.docs[0]);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -43,20 +43,18 @@ const Payloads = () => {
   } else {
     return (
       <div className="container-launch">
-        <YoutubeEmbed id={coresData.launches[0].links.youtube_id} />
-        <h1>{coresData.serial}</h1>
-        <h3>{coresData.last_update || "Details to Be Updated"}</h3>
-        <ol>
-          {coresData.launches.map((launch) => (
-            <li key={launch.id}>
-            Launch Name: {launch.name}
+        <YoutubeEmbed id={payloadsData.launch.links.youtube_id} />
+        <h4>{payloadsData.type}</h4>
+        <h1>{payloadsData.name}</h1>
+        <ul>
+            <li key={payloadsData.launch.id}>
+            Launch Name: {payloadsData.launch.name}
             <br/>
-            <a href={launch.links.wikipedia}>
+            <a href={payloadsData.launch.links.wikipedia}>
             Launch Wiki Page
             </a>
             </li>
-          ))}
-        </ol>
+        </ul>
       </div>
     );
   }
