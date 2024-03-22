@@ -113,7 +113,7 @@ const Header = () => {
             </Button>
           ))}
 
-          <form onSubmit={handleSearch}>
+          <form onSubmit={handleSearch} style={{ display: 'flex', width: '50%' }}>
                 <Search sx={{ flexGrow: 1 }}>
                   <SearchIconWrapper>
                     <SearchIcon />
