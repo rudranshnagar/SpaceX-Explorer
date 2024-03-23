@@ -13,13 +13,24 @@ const Searchres = () => {
  
   async function fetchData() {
     try {
-      const requestBody = {
+      const requestBody = 
+      {
         query: {
-          $text: {
-            $search: searchTerm?.trim() || " ",
-          },
-        },
-      };
+            name: {
+                $regex: searchTerm?.trim() || " ",
+                $options: "i"
+            }
+        }
+    }
+    const requestBodyCores = 
+    {
+      query: {
+          serial: {
+              $regex: searchTerm?.trim() || " ",
+              $options: "i"
+          }
+      }
+  }
       const rockets = await axios.post(
         `https://api.spacexdata.com/v4/rockets/query`,
         requestBody
@@ -30,7 +41,7 @@ const Searchres = () => {
       );
       const cores = await axios.post(
         `https://api.spacexdata.com/v4/cores/query`,
-        requestBody
+        requestBodyCores
       );
 
       setSearchData({rockets: rockets.data.docs , payloads: payloads.data.docs, cores: cores.data.docs});

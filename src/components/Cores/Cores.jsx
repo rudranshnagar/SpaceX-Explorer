@@ -2,8 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import YoutubeEmbed from "../Common/YoutubeEmbed";
-import { CleanHands } from "@mui/icons-material";
-import { Typography } from "@mui/material";
+import NoPage from "../Common/NoPage";
 
 const Cores = () => {
   const { id } = useParams();
@@ -28,6 +27,7 @@ const Cores = () => {
         setCoresData(cores.data.docs[0]);
         setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     }
@@ -42,23 +42,38 @@ const Cores = () => {
     );
   } else {
     return (
+      <div>
+      {coresData.length === 0 ? (
+        <NoPage />
+      ) : (
       <div className="container-launch">
         <YoutubeEmbed id={coresData.launches[0].links.youtube_id} />
         <h1>{coresData.serial}</h1>
-        <h3>{coresData.last_update || "Details to Be Updated"}</h3>
+        <h3>Last update: {coresData.last_update || "Details to Be Updated"}</h3>
+            <h3> About the Launches:</h3>
         <ol>
           {coresData.launches.map((launch) => (
             <li key={launch.id}>
-            Launch Name: {launch.name}
-            <br/>
-            <a href={launch.links.wikipedia}>
-            Launch Wiki Page
-            </a>
+              {launch.name}:
+            <p>{launch.details || "Details to Be Updated"}</p>
+                <a href={`/launches/${launch.id}`}>
+                  Check out the launch {launch.name}
+                </a>
+                <br/>
+                <a href={launch.links.wikipedia}>
+                  Launch Wiki Page
+                </a>
+                <br/>
+          <br/>
             </li>
+          
           ))}
         </ol>
       </div>
+      )}
+      </div>
     );
+    
   }
 };
 

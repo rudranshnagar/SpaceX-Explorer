@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import YoutubeEmbed from "../Common/YoutubeEmbed";
-import { CleanHands } from "@mui/icons-material";
-import { Typography } from "@mui/material";
 import NoPage from "../Common/NoPage";
 
 const Payloads = () => {
@@ -30,7 +28,7 @@ const Payloads = () => {
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        
+
         console.log(error);
       }
     }
@@ -53,10 +51,26 @@ const Payloads = () => {
             <YoutubeEmbed id={payloadsData.launch.links.youtube_id} />
             <h4>{payloadsData.type}</h4>
             <h1>{payloadsData.name}</h1>
+            <h5>
+              <ul>
+                {payloadsData.mass_lbs && (
+                  <li>Weight: {payloadsData.mass_lbs} </li>
+                )}
+
+                {payloadsData.orbit && <li>Orbit: {payloadsData.orbit} </li>}
+
+                {payloadsData.regime && <li>Regime: {payloadsData.regime} </li>}
+              </ul>
+            </h5>
+            <h3> About the Launch:</h3>
+            <p>{payloadsData.launch.details || "Details to Be Updated"}</p>
             <ul>
               <li key={payloadsData.launch.id}>
-                Launch Name: {payloadsData.launch.name}
-                <br />
+                <a href={`/launches/${payloadsData.launch.id}`}>
+                  Check out the launch {payloadsData.launch.name}
+                </a>
+              </li>
+              <li>
                 <a href={payloadsData.launch.links.wikipedia}>
                   Launch Wiki Page
                 </a>
@@ -70,32 +84,3 @@ const Payloads = () => {
 };
 
 export default Payloads;
-{
-  /* <h1>Launch Information</h1>
-        <div className="l-i">
-        <div className="heading-i">
-          <img src={launchData.links.patch.small} width={"200px"}/>
-          <h1>{launchData.name}</h1>
-        </div>
-        <h3>Date_utc: {launchData.date_utc}</h3>
-        <h3>Details: {launchData.details|| "N/A"}</h3>
-        <a href={launchData.links.article}>Link to Article</a>
-        </div>
-        <br />
-        <h1>Launch Pad Information</h1>
-        <div className="l-i">
-          <div className="heading-i">
-          <img src={launchData.launchpad.images.large[0]} width={"600vw"} height={"400vh"}/>
-          <h1>
-          {launchData.launchpad.full_name}
-          </h1>
-          </div>
-          <h3>Details: {launchData.launchpad.details}</h3>
-          <h3>Region: {launchData.launchpad.region}</h3>
-        </div>
-        <h2>Rocket Information</h2>
-        <p>{launchData.rocket.name}</p>
-        <img src={launchData.rocket.flickr_images[0]} alt="" />
-        <PayloadsTable payloadsData={launchData.payloads} />
-        <p>Flight Number: {launchData.flight_number}</p> */
-}

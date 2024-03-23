@@ -93,7 +93,12 @@ const Launches = () => {
                 height={"400vh"}
               />
             </div>
-            <h3>Launch Pad: {launchData.launchpad.full_name}</h3>
+            <h3>
+            Launch Pad: <t/>
+            <a href={`/launchpads/${launchData.launchpad.id}`}>
+             {launchData.launchpad.full_name}
+            </a>
+            </h3>
             <h3>Details: {launchData.launchpad.details}</h3>
             <h3>Region: {launchData.launchpad.region}</h3>
             <p>Flight Number: {launchData.flight_number}</p>
@@ -112,11 +117,6 @@ const Launches = () => {
                   ))
                 : ""}
             </ol>
-            {launchData.launchpad && (
-              <a href={`/launchpads/${launchData.launchpad.id}`}>
-                Check out {launchData.launchpad.name}
-              </a>
-            )}
             {launchData.ships.length > 0 ? <h3>Related Ships: </h3> : ""}
             <ol>
               {launchData.ships &&
