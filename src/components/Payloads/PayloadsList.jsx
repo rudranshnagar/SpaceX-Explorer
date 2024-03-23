@@ -4,12 +4,14 @@ import axios from "axios";
 import PayloadsTable from "./PayloadsTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
+import ErrorPage from "../Common/ErrorPage.jsx";
 
 const LaunchesList = () => {
   const { page } = useParams();
   const url = "/payloads/page/";
   const [payloadsData, setPayloadsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [e, setE] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -35,17 +37,20 @@ const LaunchesList = () => {
         setPayloadsData(response.data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setE(true)
       }
     }
 
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > payloadsData.totalPages) {
+  if (isNaN(page) || page <= 0 || page > payloadsData.totalPages) {
     return <NoPage />;
   }
-
+  if(e)
+  {
+    return <ErrorPage/>
+  }
   if (loading) {
     return (
       <div>

@@ -49,7 +49,8 @@ const Rockets = () => {
         }
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        setLoading(false);
+        
       }
     }
     fetchData();
@@ -64,13 +65,15 @@ const Rockets = () => {
   } else {
     return (
       <div>
-        {rocketsData ? (
+        {rocketsData.length === 0 ? (
+          <NoPage />
+        ) : (
           <div className="container-launch">
             {rocketsData.flickr_images[0] && (
               <img
                 src={rocketsData.flickr_images[0]}
                 alt="rocket"
-                width="1860"
+                width="1860vw"
                 height="auto"
               />
             )}
@@ -85,34 +88,16 @@ const Rockets = () => {
               <li> Country: {rocketsData.country}</li>
               <li> Details: {rocketsData.description}</li>
             </ul>
-            {rocketsData.flickr_images[1] && (
+            {rocketsData.flickr_images.map((item) => (
               <img
-                src={rocketsData.flickr_images[1]}
+                src={item}
                 alt="rocket"
-                width="1860"
-                height="900"
+                width="1860vw"
+                height="900vh"
               />
-            )}
-            {rocketsData.flickr_images[2] && (
-              <img
-                src={rocketsData.flickr_images[2]}
-                alt="rocket"
-                width="1860"
-                height="900"
-              />
-            )}
-            {rocketsData.flickr_images[3] && (
-              <img
-                src={rocketsData.flickr_images[3]}
-                alt="rocket"
-                width="1860"
-                height="900"
-              />
-            )}
+            ))}
           </div>
-        ) : (
-          <NoPage />
-        )}
+          )}
       </div>
     );
   }

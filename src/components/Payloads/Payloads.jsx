@@ -29,7 +29,7 @@ const Payloads = () => {
       } catch (error) {
         setLoading(false);
 
-        console.log(error);
+        
       }
     }
     fetchData();

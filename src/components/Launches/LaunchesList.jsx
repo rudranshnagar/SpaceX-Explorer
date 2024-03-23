@@ -4,13 +4,14 @@ import axios from "axios";
 import LaunchTable from "./LaunchTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
-import DataCard from "../Common/DataCard.jsx";
+import ErrorPage from "../Common/ErrorPage.jsx";
 
 const LaunchesList = () => {
   const { page } = useParams();
   const url = "/launches/page/";
   const [launchData, setLaunchData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [e, setE] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -30,16 +31,19 @@ const LaunchesList = () => {
         
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        setE(true)
       }
     }
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > launchData.totalPages ) {
+  if (isNaN(page) || page <= 0 || page > launchData.totalPages ) {
     return <NoPage />;
   }
-
+  if(e)
+  {
+    return <ErrorPage/>
+  }
   if (loading) {
     return (
       <div>

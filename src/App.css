@@ -165,3 +165,7 @@ overflow-y: auto;
   height: 750px !important;
   width: 500px !important;
  }
+
+ .MuiGrid-container{
+  justify-content: center;
+ }

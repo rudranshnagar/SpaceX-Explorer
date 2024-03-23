@@ -4,12 +4,14 @@ import axios from "axios";
 import CoresTable from "./CoresTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
+import ErrorPage from "../Common/ErrorPage.jsx";
 
 const CoresList = () => {
   const { page } = useParams();
   const url = "/cores/page/";
   const [coresData, setCoresData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [e, setE] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -28,16 +30,20 @@ const CoresList = () => {
         setCoresData(core.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+       setE(true)
       }
     }
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > coresData.totalPages) {
+  if (isNaN(page) || page <= 0 || page > coresData.totalPages) {
     return <NoPage />;
   }
 
+  if(e)
+  {
+    return <ErrorPage/>
+  }
   if (loading) {
     return (
       <div>

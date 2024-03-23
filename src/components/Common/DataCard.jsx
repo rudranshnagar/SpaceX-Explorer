@@ -1,9 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import React from "react";
-import { Card, CardContent, CardMedia, Button } from "@mui/material";
+import { Card, CardContent, CardMedia, CardActionArea, Button } from "@mui/material";
 
 const DataCard = ({ children, imageLink, buttonLink, id }) => {
+  const navigate = useNavigate();
+
   const altLink =
 "https://upload.wikimedia.org/wikipedia/commons/5/5a/No_image_available_500_x_500.svg"
+
+const handleCardClick = () => {
+navigate(`/${buttonLink}/` + id)
+};
 
   return (
     <div>
@@ -14,6 +21,7 @@ const DataCard = ({ children, imageLink, buttonLink, id }) => {
           border: "1px solid white",
         }}
       >
+      <CardActionArea onClick={handleCardClick}>
         <CardMedia
           component="img"
           height="500 !important"
@@ -31,15 +39,8 @@ const DataCard = ({ children, imageLink, buttonLink, id }) => {
           }}
         >
           {children}
-          <Button
-            variant="contained"
-            color="info"
-            href={`/${buttonLink}/` + id}
-            sx={{ marginTop: "20px" }}
-          >
-            Show More
-          </Button>
         </CardContent>
+        </CardActionArea>
       </Card>
     </div>
   );

@@ -4,12 +4,14 @@ import axios from "axios";
 import LaunchpadsTable from "./LaunchpadsTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
+import ErrorPage from "../Common/ErrorPage.jsx";
 
 const LaunchpadList = () => {
   const { page } = useParams();
   const url = "/launchpads/page/";
   const [launchpadData, setLaunchpadData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [e, setE] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -28,12 +30,17 @@ const LaunchpadList = () => {
         setLaunchpadData(launchpad.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+      setE(true)
       }
     }
     fetchData();
   }, [page]);
-
+  
+  
+  if(e)
+  {
+    return <ErrorPage/>
+  }
   if (page <= 0 || page > launchpadData.totalPages) {
     return <NoPage />;
   }

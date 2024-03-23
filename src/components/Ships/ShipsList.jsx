@@ -4,12 +4,14 @@ import axios from "axios";
 import ShipsTable from "./ShipsTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
+import ErrorPage from "../Common/ErrorPage.jsx";
 
 const ShipsList = () => {
   const { page } = useParams();
   const url = "/ships/page/";
   const [shipsData, setShipsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [e, setE] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -28,13 +30,18 @@ const ShipsList = () => {
         setShipsData(ships.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        setE(true)
       }
     }
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > shipsData.totalPages) {
+  if(e)
+  {
+    return <ErrorPage/>
+  }
+
+  if (isNaN(page) || page <= 0 || page > shipsData.totalPages) {
     return <NoPage />;
   }
 

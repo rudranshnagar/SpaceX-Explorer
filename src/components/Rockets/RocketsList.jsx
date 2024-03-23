@@ -4,12 +4,14 @@ import axios from "axios";
 import RocketsTable from "./RocketsTable.jsx";
 import Pagination from "../Common/Pagination.jsx";
 import NoPage from "../Common/NoPage.jsx";
+import ErrorPage from "../Common/ErrorPage.jsx";
 
 const RocketsList = () => {
   const { page } = useParams();
   const url = "/rockets/page/";
   const [rocketsData, setRocketsData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [e, setE] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -27,13 +29,18 @@ const RocketsList = () => {
         setRocketsData(rockets.data);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        setE(true)
+        
       }
     }
     fetchData();
   }, [page]);
 
-  if (page <= 0 || page > rocketsData.totalPages) {
+  if(e)
+  {
+    return <ErrorPage/>
+  }
+  if (isNaN(page) || page <= 0 || page > rocketsData.totalPages) {
     return <NoPage />;
   }
 

@@ -8,7 +8,7 @@ import React from "react";
 
 const Searchres = () => {
   const { searchTerm } = useParams();
-  const [searchData, setSearchData] = useState({});
+  const [searchData, setSearchData] = useState({rockets: [], payloads: [], cores: []});
   const [loading, setLoading] = useState(true);
  
   async function fetchData() {
@@ -17,7 +17,7 @@ const Searchres = () => {
       {
         query: {
             name: {
-                $regex: searchTerm?.trim() || " ",
+                $regex: searchTerm.trim(),
                 $options: "i"
             }
         }
@@ -26,7 +26,7 @@ const Searchres = () => {
     {
       query: {
           serial: {
-              $regex: searchTerm?.trim() || " ",
+              $regex: searchTerm.trim(),
               $options: "i"
           }
       }
@@ -48,7 +48,9 @@ const Searchres = () => {
       setLoading(false);
 
     } catch (error) {
-      console.log(error);
+      setLoading(false);
+      setSearchData({rockets: [], payloads: [], cores: []});
+     
     }
   }
  
@@ -67,7 +69,7 @@ const Searchres = () => {
       <div className="searchres">
         <h1>Search Results for "{searchTerm}"</h1>
         <h1>Rockets result:</h1>
-        {searchData.rockets.length > 0 ? (
+        { searchData.rockets.length > 0 ? (
           <RocketsTable rocketsData={searchData.rockets} />
         ) : (
           <h4>"No data found"</h4>
