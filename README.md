@@ -15,7 +15,18 @@ SpaceX Explorer W is a Single Page Application inspired by SpaceX, designed to p
 
 ### Steps to Start the Project
 
+1. **Clone the Repository:**
+   ```sh
+   git clone https://github.com/your-username/spacex-explorer.git
+   cd spacex-explorer
+   
 2. **Install Dependencies:**
    Ensure you have Node.js and npm (or yarn) installed on your system. Then, install dependencies:
    ```sh
    npm install
+
+3. **Run the Development Server:**
+Start the Vite development server to build and serve the application locally:
+   ```sh
+   npm run dev
+ 
