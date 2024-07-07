@@ -5,7 +5,7 @@ SpaceX Explorer W is a Single Page Application inspired by SpaceX, designed to p
 ### Features
 - **Designed SpaceX Inspired SPA:** Built using React and JSX to emulate SpaceX's aesthetic and functionality.
 - **Real-Time Data Streaming:** Utilized REST APIs with Axios for streaming live data from SpaceX servers.
-- **Reusable React Components:** Developed and tested over 30 reusable React components for complex application features including data rendering, pagination, and search functionality.
+- **Reusable React Components:** Developed and tested React components for complex application features including data rendering, pagination, and search functionality.
 
 ### Technologies Used
 - **React**
