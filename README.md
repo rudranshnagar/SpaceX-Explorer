@@ -7,10 +7,6 @@ Real-Time Data Streaming: Seamlessly integrated with SpaceX's servers to stream 
 Reusable Components: Created and tested reusable React components to build complex features.
 Dynamic Data Rendering: Supports efficient data rendering with pagination and search functionality for an enhanced user experience.
 
-Technologies Used
-React
-JSX
-Axios
-REST APIs
+Technologies Used: Reac, JSX, Axios, REST APIs
 
 Feel free to explore the code, raise issues, and contribute!
