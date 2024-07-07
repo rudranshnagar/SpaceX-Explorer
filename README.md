@@ -1,12 +1,21 @@
-# SpaceX-Explorer
+# SpaceX Explorer
 
-SpaceX Explorer is a Single Page Application inspired by SpaceX, designed to provide real-time data and a dynamic user experience. Developed in React and JSX, this project leverages REST APIs to fetch and display live data from SpaceX servers using Axios.
+SpaceX Explorer W is a Single Page Application inspired by SpaceX, designed to provide real-time data and a dynamic user experience. Developed in React and JSX, this project leverages REST APIs to fetch and display live data from SpaceX servers using Axios.
 
-Features
-Real-Time Data Streaming: Seamlessly integrated with SpaceX's servers to stream real-time data.
-Reusable Components: Created and tested reusable React components to build complex features.
-Dynamic Data Rendering: Supports efficient data rendering with pagination and search functionality for an enhanced user experience.
+### Features
+- **Designed SpaceX Inspired SPA:** Built using React and JSX to emulate SpaceX's aesthetic and functionality.
+- **Real-Time Data Streaming:** Utilized REST APIs with Axios for streaming live data from SpaceX servers.
+- **Reusable React Components:** Developed and tested over 30 reusable React components for complex application features including data rendering, pagination, and search functionality.
 
-Technologies Used: Reac, JSX, Axios, REST APIs
+### Technologies Used
+- **React**
+- **JSX**
+- **REST APIs**
+- **Vite** (as the build tool)
 
-Feel free to explore the code, raise issues, and contribute!
+### Steps to Start the Project
+
+2. **Install Dependencies:**
+   Ensure you have Node.js and npm (or yarn) installed on your system. Then, install dependencies:
+   ```sh
+   npm install
